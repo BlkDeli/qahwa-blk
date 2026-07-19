@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qahwa BLK</title>
+<style>
+  :root {
+    --bg: #0b0b0c;
+    --card: #17140f;
+    --text: #f5f1ea;
+    --muted: #a89f8f;
+    --gold: #c9a24a;
+    --careem: #5aa02c;
+    --talabat: #ff5a00;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 24px;
+    background: radial-gradient(circle at 50% 0%, #1a1712 0%, #0b0b0c 60%);
+  }
+  .card {
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+  }
+  .cup {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 18px;
+    display: block;
+  }
+  h1 {
+    font-size: 1.9rem;
+    letter-spacing: 0.14em;
+    margin: 0 0 6px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+  p.tag {
+    color: var(--muted);
+    margin: 0 0 40px;
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+  }
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 18px 20px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #0b0b0c;
+    transition: transform 0.15s ease, filter 0.15s ease;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .btn:active { transform: scale(0.98); }
+  .btn:hover { filter: brightness(1.08); }
+  .btn-careem { background: var(--careem); color: #fff; }
+  .btn-talabat { background: var(--talabat); color: #fff; }
+  .btn small {
+    display: block;
+    font-weight: 400;
+    opacity: 0.85;
+    font-size: 0.78rem;
+    margin-top: 2px;
+  }
+  footer {
+    margin-top: 44px;
+    color: #55503f;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <svg class="cup" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 24h34v16a17 17 0 0 1-17 17v0a17 17 0 0 1-17-17V24z" stroke="#c9a24a" stroke-width="3"/>
+      <path d="M46 28h4a7 7 0 0 1 0 14h-4" stroke="#c9a24a" stroke-width="3"/>
+      <path d="M20 12c-2 3 2 4 0 7" stroke="#c9a24a" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M29 12c-2 3 2 4 0 7" stroke="#c9a24a" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+    <h1>QAHWA BLK</h1>
+    <p class="tag">Order online — pick your app</p>
+    <div class="buttons">
+      <a class="btn btn-careem" id="btn-careem" data-platform="careem"
+         href="https://link.careem.com/DOvIkH8AWEl01" rel="noopener">
+        Order on Careem
+      </a>
+      <a class="btn btn-talabat" id="btn-talabat" data-platform="talabat"
+         href="https://www.talabat.com/jordan/qahwa-blk" rel="noopener">
+        Order on Talabat
+      </a>
+    </div>
+    <footer>Qahwa BLK</footer>
+  </div>
+
+<script>
+  var SUPABASE_URL = "https://cblkzkryeuiixqywxofv.supabase.co";
+  var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNibGt6a3J5ZXVpaXhxeXd4b2Z2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ0NTI3OTAsImV4cCI6MjEwMDAyODc5MH0.FLHzAdhCD_6I1CpZEIJ8A0ieQ48kC8e8I0sTkeCoVBs";
+
+  function logClick(platform) {
+    try {
+      fetch(SUPABASE_URL + "/rest/v1/clicks", {
+        method: "POST",
+        keepalive: true,
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": SUPABASE_ANON_KEY,
+          "Authorization": "Bearer " + SUPABASE_ANON_KEY,
+          "Prefer": "return=minimal"
+        },
+        body: JSON.stringify({ platform: platform })
+      });
+    } catch (e) { /* ignore logging failures, never block navigation */ }
+  }
+
+  document.querySelectorAll("[data-platform]").forEach(function (el) {
+    el.addEventListener("click", function () {
+      logClick(el.getAttribute("data-platform"));
+    });
+  });
+</script>
+</body>
+</html>
