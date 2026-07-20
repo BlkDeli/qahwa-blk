@@ -11,8 +11,9 @@
     --text: #f5f1ea;
     --muted: #a89f8f;
     --gold: #c9a24a;
-    --careem: #5aa02c;
-    --talabat: #ff5a00;
+    --careem: #00E784;
+    --careem-text: #00493E;
+    --talabat: #ff5900;
   }
   * { box-sizing: border-box; }
   html, body {
@@ -36,18 +37,14 @@
     max-width: 420px;
     text-align: center;
   }
-  .cup {
-    width: 56px;
-    height: 56px;
-    margin: 0 auto 18px;
+  .logo {
+    width: 128px;
+    height: 128px;
+    margin: 0 auto 22px;
     display: block;
-  }
-  h1 {
-    font-size: 1.9rem;
-    letter-spacing: 0.14em;
-    margin: 0 0 6px;
-    font-weight: 700;
-    color: var(--gold);
+    border-radius: 18px;
+    object-fit: cover;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.08);
   }
   p.tag {
     color: var(--muted);
@@ -64,27 +61,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    padding: 18px 20px;
-    border-radius: 14px;
+    height: 88px;
+    border-radius: 16px;
     text-decoration: none;
-    font-weight: 600;
-    font-size: 1.05rem;
-    color: #0b0b0c;
     transition: transform 0.15s ease, filter 0.15s ease;
     border: 1px solid rgba(255,255,255,0.06);
+    overflow: hidden;
   }
   .btn:active { transform: scale(0.98); }
-  .btn:hover { filter: brightness(1.08); }
-  .btn-careem { background: var(--careem); color: #fff; }
-  .btn-talabat { background: var(--talabat); color: #fff; }
-  .btn small {
-    display: block;
-    font-weight: 400;
-    opacity: 0.85;
-    font-size: 0.78rem;
-    margin-top: 2px;
+  .btn:hover { filter: brightness(1.06); }
+  .btn-careem { background: var(--careem); }
+  .btn-talabat { background: #ffffff; }
+  .btn img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
   }
+  .btn-careem img { height: 58px; }
+  .btn-talabat img { height: 68px; }
   footer {
     margin-top: 44px;
     color: #55503f;
@@ -95,22 +89,16 @@
 </head>
 <body>
   <div class="card">
-    <svg class="cup" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 24h34v16a17 17 0 0 1-17 17v0a17 17 0 0 1-17-17V24z" stroke="#c9a24a" stroke-width="3"/>
-      <path d="M46 28h4a7 7 0 0 1 0 14h-4" stroke="#c9a24a" stroke-width="3"/>
-      <path d="M20 12c-2 3 2 4 0 7" stroke="#c9a24a" stroke-width="2.5" stroke-linecap="round"/>
-      <path d="M29 12c-2 3 2 4 0 7" stroke="#c9a24a" stroke-width="2.5" stroke-linecap="round"/>
-    </svg>
-    <h1>QAHWA BLK</h1>
+    <img class="logo" src="assets/blk-logo.jpg" alt="Qahwa BLK">
     <p class="tag">Order online — pick your app</p>
     <div class="buttons">
       <a class="btn btn-careem" id="btn-careem" data-platform="careem"
-         href="https://link.careem.com/DOvIkH8AWEl01" rel="noopener">
-        Order on Careem
+         href="https://link.careem.com/DOvIkH8AWEl01" rel="noopener" aria-label="Order on Careem">
+        <img src="assets/careem.svg" alt="Careem">
       </a>
       <a class="btn btn-talabat" id="btn-talabat" data-platform="talabat"
-         href="https://www.talabat.com/jordan/qahwa-blk" rel="noopener">
-        Order on Talabat
+         href="https://www.talabat.com/jordan/qahwa-blk" rel="noopener" aria-label="Order on Talabat">
+        <img src="assets/talabat.jpg" alt="Talabat">
       </a>
     </div>
     <footer>Qahwa BLK</footer>
