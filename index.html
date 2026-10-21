@@ -2,111 +2,175 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Qahwa BLK</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Qahwa BLK — Order online</title>
+<meta name="description" content="Order Qahwa BLK on Careem or Talabat, and find your nearest branch in Amman.">
+<meta name="theme-color" content="#0a0a0a">
+<meta property="og:title" content="Qahwa BLK — Order online">
+<meta property="og:description" content="Order on Careem or Talabat, and find your nearest branch.">
+<meta property="og:image" content="assets/blk-logo.jpg">
+<link rel="icon" href="assets/blk-logo.jpg">
 <style>
   :root {
-    --bg: #0b0b0c;
-    --card: #17140f;
+    --bg: #0a0a0a;
+    --surface: #131210;
+    --line: rgba(255,255,255,0.09);
     --text: #f5f1ea;
-    --muted: #a89f8f;
+    --muted: #9c9382;
     --gold: #c9a24a;
-    --careem: #00E784;
-    --careem-text: #00493E;
-    --talabat: #ff5900;
+    --gold-soft: rgba(201,162,74,0.16);
   }
-  * { box-sizing: border-box; }
-  html, body {
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; }
+  body {
     margin: 0;
-    padding: 0;
-    height: 100%;
     background: var(--bg);
     color: var(--text);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  }
-  body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    -webkit-font-smoothing: antialiased;
     min-height: 100vh;
-    padding: 24px;
-    background: radial-gradient(circle at 50% 0%, #1a1712 0%, #0b0b0c 60%);
+    padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201,162,74,0.16), transparent 70%),
+      radial-gradient(ellipse 60% 40% at 50% 110%, rgba(201,162,74,0.07), transparent 70%);
+    background-repeat: no-repeat;
   }
-  .card {
-    width: 100%;
-    max-width: 420px;
-    text-align: center;
-  }
+  .page { width: 100%; max-width: 520px; margin: 0 auto; padding: 44px 20px 36px; }
+
+  /* Hero */
+  .hero { text-align: center; }
   .logo {
-    width: 128px;
-    height: 128px;
-    margin: 0 auto 22px;
-    display: block;
-    border-radius: 18px;
-    object-fit: cover;
-    box-shadow: 0 0 0 1px rgba(255,255,255,0.08);
+    width: 112px; height: 112px; border-radius: 22px; object-fit: cover; display: block; margin: 0 auto 22px;
+    box-shadow: 0 0 0 1px var(--line), 0 18px 48px rgba(0,0,0,0.6), 0 0 60px var(--gold-soft);
   }
-  p.tag {
-    color: var(--muted);
-    margin: 0 0 40px;
-    font-size: 0.95rem;
-    letter-spacing: 0.03em;
+  h1 {
+    margin: 0 0 8px; font-size: 1.9rem; font-weight: 700; letter-spacing: -0.01em;
   }
-  .buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  .sub { margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.5; }
+  .rule {
+    width: 44px; height: 2px; margin: 24px auto 0; background: var(--gold); border-radius: 2px; opacity: 0.8;
   }
-  .btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 88px;
-    border-radius: 16px;
-    text-decoration: none;
-    transition: transform 0.15s ease, filter 0.15s ease;
-    border: 1px solid rgba(255,255,255,0.06);
-    overflow: hidden;
+
+  /* Section headings */
+  .eyebrow {
+    display: flex; align-items: center; gap: 12px; margin: 38px 0 16px;
+    color: var(--gold); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
   }
-  .btn:active { transform: scale(0.98); }
-  .btn:hover { filter: brightness(1.06); }
-  .btn-careem { background: var(--careem); }
-  .btn-talabat { background: var(--talabat); }
-  .btn img {
-    max-height: 100%;
-    max-width: 100%;
-    object-fit: contain;
+  .eyebrow::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  /* Order tiles */
+  .tiles { display: grid; gap: 14px; }
+  .tile {
+    position: relative; display: block; height: 138px; border-radius: 20px; overflow: hidden;
+    text-decoration: none; color: #fff; border: 1px solid var(--line);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+    transition: transform .18s ease, box-shadow .18s ease;
+    isolation: isolate;
   }
-  .btn-careem img { height: 58px; }
-  .btn-talabat img { height: 58px; }
-  footer {
-    margin-top: 44px;
-    color: #55503f;
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
+  .tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; transition: transform .35s ease; }
+  .tile .cta {
+    position: absolute; right: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(10,10,10,0.78); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    padding: 9px 14px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.01em;
+  }
+  .tile .cta svg { width: 14px; height: 14px; transition: transform .18s ease; }
+  .tile:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(0,0,0,0.55); }
+  .tile:hover img { transform: scale(1.04); }
+  .tile:hover .cta svg { transform: translateX(3px); }
+  .tile:active { transform: scale(0.985); }
+  .tile:focus-visible, .map-link:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+  /* Map */
+  .map-card {
+    border-radius: 20px; overflow: hidden; background: var(--surface); border: 1px solid var(--line);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+  }
+  .map-frame { height: 360px; overflow: hidden; background: #1a1a1a; }
+  /* Shift the embed up to hide Google's title strip (map owner's profile) */
+  .map-frame iframe { display: block; width: 100%; height: calc(100% + 64px); margin-top: -64px; border: 0; }
+  .map-foot {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px;
+    border-top: 1px solid var(--line);
+  }
+  .map-foot span { color: var(--muted); font-size: 0.85rem; line-height: 1.35; }
+  .map-link {
+    flex: none; text-decoration: none; color: #1a1712; background: var(--gold); font-weight: 700;
+    font-size: 0.85rem; padding: 10px 16px; border-radius: 999px; transition: filter .15s ease, transform .15s ease;
+  }
+  .map-link:hover { filter: brightness(1.08); }
+  .map-link:active { transform: scale(0.97); }
+
+  footer { margin-top: 44px; text-align: center; color: #5d5646; font-size: 0.75rem; letter-spacing: 0.08em; }
+
+  @media (min-width: 600px) {
+    .page { padding-top: 72px; }
+    .map-frame { height: 420px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+    html { scroll-behavior: auto; }
   }
 </style>
 </head>
 <body>
-  <div class="card">
-    <img class="logo" src="assets/blk-logo.jpg" alt="Qahwa BLK">
-    <p class="tag">Order online — pick your app</p>
-    <div class="buttons">
-      <a class="btn btn-careem" id="btn-careem" data-platform="careem"
+  <main class="page">
+    <header class="hero">
+      <img class="logo" src="assets/blk-logo.jpg" alt="Qahwa BLK">
+      <h1>Qahwa BLK</h1>
+      <p class="sub">Freshly brewed, delivered to you.<br>Pick your app to order.</p>
+      <div class="rule"></div>
+    </header>
+
+    <div class="eyebrow">Order online</div>
+    <div class="tiles">
+      <a class="tile" id="btn-careem" data-platform="careem"
          href="https://careem.go.link/2iLRM" rel="noopener" aria-label="Order on Careem">
         <img src="assets/careem.svg" alt="Careem">
+        <span class="cta">Order on Careem
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </span>
       </a>
-      <a class="btn btn-talabat" id="btn-talabat" data-platform="talabat"
+      <a class="tile" id="btn-talabat" data-platform="talabat"
          href="https://www.talabat.com/jordan/qahwa-blk" rel="noopener" aria-label="Order on Talabat">
         <img src="assets/talabat.jpg" alt="Talabat">
+        <span class="cta">Order on Talabat
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </span>
       </a>
     </div>
-    <footer>Qahwa BLK</footer>
-  </div>
+
+    <div class="eyebrow">Find a branch</div>
+    <div class="map-card">
+      <div class="map-frame">
+        <iframe title="Qahwa BLK branches map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps/d/embed?mid=1vUmZEhnP0sZ5ezfTDlh0EvX4laJRCuc&amp;ll=31.9539,35.9106&amp;z=11"></iframe>
+      </div>
+      <div class="map-foot">
+        <span>Abdoun, Abdali, Wadi Saqra, Swefieh and more.</span>
+        <a class="map-link" href="https://www.google.com/maps/d/viewer?mid=1vUmZEhnP0sZ5ezfTDlh0EvX4laJRCuc"
+           target="_blank" rel="noopener">Open map</a>
+      </div>
+    </div>
+
+    <footer>QAHWA BLK · AMMAN, JORDAN</footer>
+  </main>
 
 <script>
   var SUPABASE_URL = "https://cblkzkryeuiixqywxofv.supabase.co";
   var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNibGt6a3J5ZXVpaXhxeXd4b2Z2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ0NTI3OTAsImV4cCI6MjEwMDAyODc5MH0.FLHzAdhCD_6I1CpZEIJ8A0ieQ48kC8e8I0sTkeCoVBs";
+
+  // Links are editable from the status page; the hrefs above are only the fallback.
+  fetch(SUPABASE_URL + "/rest/v1/links?select=platform,url", {
+    headers: { "apikey": SUPABASE_ANON_KEY, "Authorization": "Bearer " + SUPABASE_ANON_KEY }
+  })
+    .then(function (res) { return res.ok ? res.json() : []; })
+    .then(function (rows) {
+      rows.forEach(function (r) {
+        var el = document.querySelector('[data-platform="' + r.platform + '"]');
+        if (el && /^https:\/\//.test(r.url)) el.setAttribute("href", r.url);
+      });
+    })
+    .catch(function () { /* keep fallback links */ });
 
   function logClick(platform) {
     try {
