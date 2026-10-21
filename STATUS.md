@@ -4,7 +4,7 @@
 Static one-page site at del.blk.jo: order tiles for Careem and Talabat plus an embedded branch map. Hosted on GitHub Pages (BlkDeli/qahwa-blk) behind Cloudflare.
 
 ## Current state
-Live at https://del.blk.jo. Order links are loaded from the Supabase `public.links` table on page load; the hrefs in index.html are only a fallback if the fetch fails. Clicks are logged to `public.clicks`. Find a branch: tap the button, the browser asks for location, and the 41 branches are listed nearest-first with Directions links. Branch list is a static copy of the Google My Map (mid 1vUmZEhnP0sZ5ezfTDlh0EvX4laJRCuc) inside index.html (BRANCHES array).
+Live at https://del.blk.jo. Order links are loaded from the Supabase `public.links` table on page load; the hrefs in index.html are only a fallback if the fetch fails. Clicks are logged to `public.clicks`. Find a branch: tap the button, the browser asks for location, and the 41 branches are listed nearest-first with "Hours & map" links that open each branch's Google listing. Branch list is a static copy of the Google My Map (mid 1vUmZEhnP0sZ5ezfTDlh0EvX4laJRCuc) inside index.html (BRANCHES array).
 
 ## Decisions made
 - Plain index.html, no build step; deploy = push to main.

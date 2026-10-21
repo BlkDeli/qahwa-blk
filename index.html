@@ -303,8 +303,10 @@
       go.className = "go";
       go.target = "_blank";
       go.rel = "noopener";
-      go.href = "https://www.google.com/maps/dir/?api=1&destination=" + b.lat + "," + b.lng;
-      go.innerHTML = 'Directions <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
+      // Name search centred on the branch opens its Google listing (hours, directions) instead of a bare pin.
+      go.href = "https://www.google.com/maps/search/" + encodeURIComponent("Qahwa BLK " + b.name) +
+        "/@" + b.lat + "," + b.lng + ",17z";
+      go.innerHTML = 'Hours &amp; map <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
       li.appendChild(info);
       li.appendChild(go);
       listEl.appendChild(li);
