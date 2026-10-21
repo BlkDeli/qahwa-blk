@@ -4,58 +4,48 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Qahwa BLK — Order online</title>
-<meta name="description" content="Order Qahwa BLK on Careem or Talabat, and find your nearest branch in Amman.">
-<meta name="theme-color" content="#0a0a0a">
+<meta name="description" content="Order Qahwa BLK on Careem or Talabat, and find your nearest branch.">
+<meta name="theme-color" content="#000000">
 <meta property="og:title" content="Qahwa BLK — Order online">
 <meta property="og:description" content="Order on Careem or Talabat, and find your nearest branch.">
 <meta property="og:image" content="assets/blk-logo.jpg">
 <link rel="icon" href="assets/blk-logo.jpg">
 <style>
   :root {
-    --bg: #0a0a0a;
-    --surface: #131210;
-    --line: rgba(255,255,255,0.09);
-    --text: #f5f1ea;
-    --muted: #9c9382;
-    --gold: #c9a24a;
-    --gold-soft: rgba(201,162,74,0.16);
+    --bg: #000;
+    --surface: #0a0a0a;
+    --line: rgba(255,255,255,0.12);
+    --text: #f4f5f7;
+    --muted: #8c9097;
+    --chrome: linear-gradient(180deg, #ffffff 0%, #d5d9df 38%, #8f949d 52%, #dfe3e8 78%, #ffffff 100%);
   }
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; background: var(--bg); }
   body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
+    margin: 0; background: var(--bg); color: var(--text);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    min-height: 100vh;
+    -webkit-font-smoothing: antialiased; min-height: 100vh;
     padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
-    background-image:
-      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201,162,74,0.16), transparent 70%),
-      radial-gradient(ellipse 60% 40% at 50% 110%, rgba(201,162,74,0.07), transparent 70%);
-    background-repeat: no-repeat;
   }
   .page { width: 100%; max-width: 520px; margin: 0 auto; padding: 44px 20px 36px; }
 
-  /* Hero */
-  .hero { text-align: center; }
-  .logo {
-    width: 112px; height: 112px; border-radius: 22px; object-fit: cover; display: block; margin: 0 auto 22px;
-    box-shadow: 0 0 0 1px var(--line), 0 18px 48px rgba(0,0,0,0.6), 0 0 60px var(--gold-soft);
-  }
-  h1 {
-    margin: 0 0 8px; font-size: 1.9rem; font-weight: 700; letter-spacing: -0.01em;
-  }
-  .sub { margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.5; }
-  .rule {
-    width: 44px; height: 2px; margin: 24px auto 0; background: var(--gold); border-radius: 2px; opacity: 0.8;
+  .chrome-text {
+    background: var(--chrome); -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
   }
 
-  /* Section headings */
+  /* Hero */
+  .hero { text-align: center; }
+  .logo { width: 132px; height: auto; display: block; margin: 0 auto 20px; mix-blend-mode: screen; }
+  h1 { margin: 0 0 8px; font-size: 1.9rem; font-weight: 700; letter-spacing: -0.01em; }
+  .sub { margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.5; }
+  .rule { width: 56px; height: 2px; margin: 24px auto 0; background: var(--chrome); border-radius: 2px; }
+
   .eyebrow {
     display: flex; align-items: center; gap: 12px; margin: 38px 0 16px;
-    color: var(--gold); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+    font-size: 0.74rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
   }
+  .eyebrow span { background: var(--chrome); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
   .eyebrow::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 
   /* Order tiles */
@@ -63,65 +53,85 @@
   .tile {
     position: relative; display: block; height: 138px; border-radius: 20px; overflow: hidden;
     text-decoration: none; color: #fff; border: 1px solid var(--line);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.45);
-    transition: transform .18s ease, box-shadow .18s ease;
-    isolation: isolate;
+    transition: transform .18s ease, box-shadow .18s ease; isolation: isolate;
   }
   .tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; transition: transform .35s ease; }
   .tile .cta {
     position: absolute; right: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(10,10,10,0.78); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-    padding: 9px 14px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.01em;
+    background: rgba(0,0,0,0.78); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    padding: 9px 14px; border-radius: 999px; font-size: 0.85rem; font-weight: 600;
   }
   .tile .cta svg { width: 14px; height: 14px; transition: transform .18s ease; }
-  .tile:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(0,0,0,0.55); }
+  .tile:hover { transform: translateY(-2px); box-shadow: 0 12px 34px rgba(255,255,255,0.07); }
   .tile:hover img { transform: scale(1.04); }
   .tile:hover .cta svg { transform: translateX(3px); }
   .tile:active { transform: scale(0.985); }
-  .tile:focus-visible, .map-link:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 
-  /* Map */
-  .map-card {
-    border-radius: 20px; overflow: hidden; background: var(--surface); border: 1px solid var(--line);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+  /* Chrome buttons */
+  .chrome-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    border: 0; cursor: pointer; text-decoration: none; color: #0b0b0c; font-weight: 700; font-size: 0.95rem;
+    background: var(--chrome); border-radius: 14px; padding: 15px 20px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 6px 22px rgba(255,255,255,0.08);
+    transition: filter .15s ease, transform .15s ease;
   }
-  .map-frame { height: 360px; overflow: hidden; background: #1a1a1a; }
-  /* Shift the embed up to hide Google's title strip (map owner's profile) */
-  .map-frame iframe { display: block; width: 100%; height: calc(100% + 64px); margin-top: -64px; border: 0; }
-  .map-foot {
-    display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px;
-    border-top: 1px solid var(--line);
-  }
-  .map-foot span { color: var(--muted); font-size: 0.85rem; line-height: 1.35; }
-  .map-link {
-    flex: none; text-decoration: none; color: #1a1712; background: var(--gold); font-weight: 700;
-    font-size: 0.85rem; padding: 10px 16px; border-radius: 999px; transition: filter .15s ease, transform .15s ease;
-  }
-  .map-link:hover { filter: brightness(1.08); }
-  .map-link:active { transform: scale(0.97); }
+  .chrome-btn:hover { filter: brightness(1.05); }
+  .chrome-btn:active { transform: scale(0.98); }
+  .chrome-btn svg { width: 18px; height: 18px; }
+  .chrome-btn[disabled] { opacity: .6; cursor: default; }
 
-  footer { margin-top: 44px; text-align: center; color: #5d5646; font-size: 0.75rem; letter-spacing: 0.08em; }
+  /* Nearest branch */
+  .finder { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 18px; }
+  .finder .lead { margin: 0 0 14px; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+  .finder .chrome-btn { width: 100%; }
+  .status { margin: 12px 2px 0; font-size: 0.85rem; color: var(--muted); min-height: 1.2em; }
+  .status.err { color: #ff8a8a; }
+  .branches { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 10px; }
+  .branches:empty { display: none; }
+  .branch {
+    display: flex; align-items: center; gap: 12px; padding: 14px; border-radius: 14px;
+    background: #101010; border: 1px solid var(--line);
+  }
+  .branch.first { border-color: rgba(255,255,255,0.4); }
+  .branch .info { flex: 1; min-width: 0; }
+  .branch .name { font-weight: 600; font-size: 0.95rem; line-height: 1.3; }
+  .branch .dist { margin-top: 3px; font-size: 0.8rem; color: var(--muted); }
+  .branch .tag {
+    display: inline-block; margin-right: 6px; padding: 2px 8px; border-radius: 999px; font-size: 0.68rem;
+    font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #0b0b0c; background: var(--chrome);
+  }
+  .branch .go {
+    flex: none; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: var(--text);
+    font-size: 0.82rem; font-weight: 600; padding: 9px 13px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.28);
+    transition: background .15s ease;
+  }
+  .branch .go:hover { background: rgba(255,255,255,0.1); }
+  .branch .go svg { width: 13px; height: 13px; }
+  .more {
+    display: block; width: 100%; margin-top: 12px; padding: 12px; background: none; border: 1px solid var(--line);
+    color: var(--muted); border-radius: 12px; font-size: 0.85rem; font-weight: 600; cursor: pointer;
+  }
+  .more[hidden] { display: none; }
+  .all-link { display: block; margin-top: 14px; text-align: center; color: var(--muted); font-size: 0.82rem; }
+  .all-link:hover { color: var(--text); }
 
-  @media (min-width: 600px) {
-    .page { padding-top: 72px; }
-    .map-frame { height: 420px; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    * { transition: none !important; }
-    html { scroll-behavior: auto; }
-  }
+  footer { margin-top: 44px; text-align: center; color: #4a4d52; font-size: 0.75rem; letter-spacing: 0.08em; }
+
+  @media (min-width: 600px) { .page { padding-top: 72px; } }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } html { scroll-behavior: auto; } }
 </style>
 </head>
 <body>
   <main class="page">
     <header class="hero">
       <img class="logo" src="assets/blk-logo.jpg" alt="Qahwa BLK">
-      <h1>Qahwa BLK</h1>
+      <h1 class="chrome-text">Qahwa BLK</h1>
       <p class="sub">Freshly brewed, delivered to you.<br>Pick your app to order.</p>
       <div class="rule"></div>
     </header>
 
-    <div class="eyebrow">Order online</div>
+    <div class="eyebrow"><span>Order online</span></div>
     <div class="tiles">
       <a class="tile" id="btn-careem" data-platform="careem"
          href="https://careem.go.link/2iLRM" rel="noopener" aria-label="Order on Careem">
@@ -139,20 +149,21 @@
       </a>
     </div>
 
-    <div class="eyebrow">Find a branch</div>
-    <div class="map-card">
-      <div class="map-frame">
-        <iframe title="Qahwa BLK branches map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps/d/embed?mid=1vUmZEhnP0sZ5ezfTDlh0EvX4laJRCuc&amp;ll=31.9539,35.9106&amp;z=11"></iframe>
-      </div>
-      <div class="map-foot">
-        <span>Abdoun, Abdali, Wadi Saqra, Swefieh and more.</span>
-        <a class="map-link" href="https://www.google.com/maps/d/viewer?mid=1vUmZEhnP0sZ5ezfTDlh0EvX4laJRCuc"
-           target="_blank" rel="noopener">Open map</a>
-      </div>
-    </div>
+    <div class="eyebrow"><span>Find a branch</span></div>
+    <section class="finder">
+      <p class="lead">Visiting us? Share your location and we’ll show the branches closest to you.</p>
+      <button class="chrome-btn" id="find-btn" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></svg>
+        <span id="find-label">Find my nearest branch</span>
+      </button>
+      <div class="status" id="status" role="status" aria-live="polite"></div>
+      <ul class="branches" id="branches"></ul>
+      <button class="more" id="more" type="button" hidden>Show more branches</button>
+      <a class="all-link" href="https://www.google.com/maps/d/viewer?mid=1vUmZEhnP0sZ5ezfTDlh0EvX4laJRCuc"
+         target="_blank" rel="noopener">View all branches on the map</a>
+    </section>
 
-    <footer>QAHWA BLK · AMMAN, JORDAN</footer>
+    <footer>QAHWA BLK</footer>
   </main>
 
 <script>
@@ -192,6 +203,142 @@
     el.addEventListener("click", function () {
       logClick(el.getAttribute("data-platform"));
     });
+  });
+
+  // Branches copied from the Google My Map (name, lat, lng). Re-export if the map changes.
+  var BRANCHES = [
+    ["Abdoun",31.94678,35.87898],
+    ["Abdoun Circle",31.94892,35.89161],
+    ["Abdali Boulevard",31.96427,35.90529],
+    ["Wadi Saqra",31.96235,35.89016],
+    ["Training Branch",31.95801,35.90866],
+    ["Swefieh",31.95625,35.86548],
+    ["Sport City",31.98993,35.90999],
+    ["7th Circle",31.95508,35.85480],
+    ["Al Yasmin",31.91871,35.90604],
+    ["KIA Town Showroom",31.94332,35.84811],
+    ["Ahliyeh University",32.04607,35.77814],
+    ["Jordan University (Clock Tower)",32.01634,35.87134],
+    ["University street 1",31.99837,35.88125],
+    ["University Street 2",32.00070,35.87717],
+    ["Khalda Branch",31.99733,35.84589],
+    ["AL Bayader",31.95480,35.83505],
+    ["Al Hurriyeh Street",31.89611,35.91635],
+    ["Total Isra’a Airport Rd.",31.80548,35.91245],
+    ["Fuheis",32.00157,35.78155],
+    ["New Zarqa",32.09719,36.08731],
+    ["Hashemite University (Western) Branch",32.10524,36.18686],
+    ["Autostrad",32.04167,36.09381],
+    ["Sweileh",32.02017,35.86132],
+    ["Abdallah Ghosheh St",31.97137,35.85402],
+    ["Alhujrah Branch",31.72177,35.95196],
+    ["Jordan University (Capsule Branch)",32.00942,35.87408],
+    ["JUST University",32.49243,35.98966],
+    ["Petra",30.32512,35.46865],
+    ["Irbid Wasfi Al-Tal St.",32.52714,35.87750],
+    ["Yarmouk University Street",32.54149,35.85188],
+    ["Arrivals",31.72205,35.98549],
+    ["Ein Al Basha",32.09597,35.84581],
+    ["Dabouq",32.00319,35.83066],
+    ["Al-Hoson",32.50758,35.87452],
+    ["Tabarbour",32.00477,35.95040],
+    ["Zouk Mosbeh",33.95130,35.62204],
+    ["American University Of Beirut",33.90056,35.48122],
+    ["Jal El Dib",33.90622,35.57953],
+    ["Mar Mikhayel",33.89602,35.52206],
+    ["Ain Al Mraiseh",33.90119,35.48968],
+    ["Iraq Mall",33.26497,44.41721]
+  ];
+
+  var findBtn = document.getElementById("find-btn");
+  var findLabel = document.getElementById("find-label");
+  var statusEl = document.getElementById("status");
+  var listEl = document.getElementById("branches");
+  var moreBtn = document.getElementById("more");
+  var sorted = [];
+  var shown = 0;
+  var PAGE = 5;
+
+  function distKm(lat1, lng1, lat2, lng2) {
+    var r = Math.PI / 180;
+    var s1 = Math.sin((lat2 - lat1) * r / 2);
+    var s2 = Math.sin((lng2 - lng1) * r / 2);
+    var a = s1 * s1 + Math.cos(lat1 * r) * Math.cos(lat2 * r) * s2 * s2;
+    return 12742 * Math.asin(Math.sqrt(a));
+  }
+
+  function fmt(km) {
+    if (km < 1) return Math.round(km * 10) * 100 + " m away";
+    return (km < 10 ? km.toFixed(1) : Math.round(km)) + " km away";
+  }
+
+  function setStatus(msg, isErr) {
+    statusEl.textContent = msg;
+    statusEl.className = "status" + (isErr ? " err" : "");
+  }
+
+  function renderMore() {
+    var end = Math.min(shown + PAGE, sorted.length);
+    for (var i = shown; i < end; i++) {
+      var b = sorted[i];
+      var li = document.createElement("li");
+      li.className = "branch" + (i === 0 ? " first" : "");
+      var info = document.createElement("div");
+      info.className = "info";
+      var name = document.createElement("div");
+      name.className = "name";
+      if (i === 0) {
+        var tag = document.createElement("span");
+        tag.className = "tag";
+        tag.textContent = "Nearest";
+        name.appendChild(tag);
+      }
+      name.appendChild(document.createTextNode(b.name));
+      var dist = document.createElement("div");
+      dist.className = "dist";
+      dist.textContent = fmt(b.km);
+      info.appendChild(name);
+      info.appendChild(dist);
+      var go = document.createElement("a");
+      go.className = "go";
+      go.target = "_blank";
+      go.rel = "noopener";
+      go.href = "https://www.google.com/maps/dir/?api=1&destination=" + b.lat + "," + b.lng;
+      go.innerHTML = 'Directions <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
+      li.appendChild(info);
+      li.appendChild(go);
+      listEl.appendChild(li);
+    }
+    shown = end;
+    moreBtn.hidden = shown >= sorted.length;
+  }
+
+  moreBtn.addEventListener("click", renderMore);
+
+  findBtn.addEventListener("click", function () {
+    if (!navigator.geolocation) {
+      setStatus("Your browser can’t share location. Use the map link below.", true);
+      return;
+    }
+    findBtn.disabled = true;
+    setStatus("Finding your location…", false);
+    navigator.geolocation.getCurrentPosition(function (pos) {
+      var lat = pos.coords.latitude, lng = pos.coords.longitude;
+      sorted = BRANCHES.map(function (b) {
+        return { name: b[0], lat: b[1], lng: b[2], km: distKm(lat, lng, b[1], b[2]) };
+      }).sort(function (a, b) { return a.km - b.km; });
+      listEl.innerHTML = "";
+      shown = 0;
+      renderMore();
+      setStatus("Closest branches to you:", false);
+      findBtn.disabled = false;
+      findLabel.textContent = "Update my location";
+    }, function (err) {
+      findBtn.disabled = false;
+      setStatus(err && err.code === 1
+        ? "Location is blocked. Allow it in your browser settings, or use the map link below."
+        : "Couldn’t get your location. Please try again or use the map link below.", true);
+    }, { enableHighAccuracy: false, timeout: 15000, maximumAge: 60000 });
   });
 </script>
 </body>
