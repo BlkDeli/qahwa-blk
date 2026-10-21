@@ -14,8 +14,10 @@ Live at https://del.blk.jo. Order links are loaded from the Supabase `public.lin
 - Keep the fallback hrefs in index.html in sync with the database when links change for good.
 
 ## Next steps
-1. None pending.
+1. Optional: replace name-search links with exact Google listing links per branch (clusters like University St. show a short results list).
+2. Refresh the BRANCHES array if the Google My Map changes (Autostrad Zarqa has no coordinates on the map).
 
 ## Log
+- 2026-10-21: Branch buttons now open the Google listing (hours) via name search at the branch coordinates, not a dropped pin.
 - 2026-10-21: Pitch-black + chrome restyle, logo white frame only, replaced embedded map with nearest-branch finder (geolocation).
 - 2026-10-21: Replaced Careem link with careem.go.link/2iLRM. Redesigned the page (tiles, map section). Links now editable from the status page.
