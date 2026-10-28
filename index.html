@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Qahwa BLK — Order online</title>
-<meta name="description" content="Order Qahwa BLK on Careem or Talabat, and find your nearest branch.">
+<title>قهوة BLK — اطلب أونلاين</title>
+<meta name="description" content="اطلب من قهوة BLK عبر كريم أو طلبات، واعثر على أقرب فرع إليك.">
 <meta name="theme-color" content="#000000">
-<meta property="og:title" content="Qahwa BLK — Order online">
-<meta property="og:description" content="Order on Careem or Talabat, and find your nearest branch.">
+<meta property="og:title" content="قهوة BLK — اطلب أونلاين">
+<meta property="og:description" content="اطلب عبر كريم أو طلبات، واعثر على أقرب فرع إليك.">
 <meta property="og:image" content="assets/blk-logo.jpg">
 <link rel="icon" href="assets/blk-logo.jpg">
 <style>
@@ -23,7 +23,7 @@
   html { scroll-behavior: smooth; background: var(--bg); }
   body {
     margin: 0; background: var(--bg); color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, "Noto Sans Arabic", Roboto, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased; min-height: 100vh;
     padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
   }
@@ -33,6 +33,15 @@
     background: var(--chrome); -webkit-background-clip: text; background-clip: text;
     -webkit-text-fill-color: transparent; color: transparent;
   }
+
+  /* Language switch */
+  .topbar { display: flex; justify-content: flex-end; margin: -20px 0 8px; }
+  .lang-btn {
+    background: none; border: 1px solid rgba(255,255,255,0.28); color: var(--text); cursor: pointer;
+    border-radius: 999px; padding: 7px 14px; font: inherit; font-size: 0.82rem; font-weight: 600;
+    transition: background .15s ease;
+  }
+  .lang-btn:hover { background: rgba(255,255,255,0.1); }
 
   /* Hero */
   .hero { text-align: center; }
@@ -57,7 +66,7 @@
   }
   .tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; transition: transform .35s ease; }
   .tile .cta {
-    position: absolute; right: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 8px;
+    position: absolute; inset-inline-end: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 8px;
     background: rgba(0,0,0,0.78); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
     padding: 9px 14px; border-radius: 999px; font-size: 0.85rem; font-weight: 600;
   }
@@ -98,7 +107,7 @@
   .branch .name { font-weight: 600; font-size: 0.95rem; line-height: 1.3; }
   .branch .dist { margin-top: 3px; font-size: 0.8rem; color: var(--muted); }
   .branch .tag {
-    display: inline-block; margin-right: 6px; padding: 2px 8px; border-radius: 999px; font-size: 0.68rem;
+    display: inline-block; margin-inline-end: 6px; padding: 2px 8px; border-radius: 999px; font-size: 0.68rem;
     font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #0b0b0c; background: var(--chrome);
   }
   .branch .go {
@@ -118,55 +127,135 @@
 
   footer { margin-top: 44px; text-align: center; color: #4a4d52; font-size: 0.75rem; letter-spacing: 0.08em; }
 
+  /* Arabic: no letter-spacing (breaks joined letters), mirror the arrows */
+  :lang(ar) .eyebrow, :lang(ar) footer, :lang(ar) .branch .tag, :lang(ar) h1 { letter-spacing: 0; }
+  [dir="rtl"] .tile .cta svg, [dir="rtl"] .branch .go svg { transform: scaleX(-1); }
+  [dir="rtl"] .tile:hover .cta svg { transform: scaleX(-1) translateX(3px); }
+
   @media (min-width: 600px) { .page { padding-top: 72px; } }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } html { scroll-behavior: auto; } }
 </style>
 </head>
 <body>
   <main class="page">
+    <div class="topbar"><button class="lang-btn" id="lang-btn" type="button" lang="en">English</button></div>
     <header class="hero">
-      <img class="logo" src="assets/blk-logo.jpg" alt="Qahwa BLK">
-      <h1 class="chrome-text">Qahwa BLK</h1>
-      <p class="sub">Freshly brewed, delivered to you.<br>Pick your app to order.</p>
+      <img class="logo" src="assets/blk-logo.jpg" alt="قهوة BLK" data-i18n-alt="logoAlt">
+      <h1 class="chrome-text" data-i18n="brand">قهوة BLK</h1>
+      <p class="sub" data-i18n="sub" data-html>قهوة طازجة، توصلك لباب البيت.<br>اختر التطبيق للطلب.</p>
       <div class="rule"></div>
     </header>
 
-    <div class="eyebrow"><span>Order online</span></div>
+    <div class="eyebrow"><span data-i18n="orderOnline">اطلب أونلاين</span></div>
     <div class="tiles">
       <a class="tile" id="btn-careem" data-platform="careem"
-         href="https://careem.go.link/2iLRM" rel="noopener" aria-label="Order on Careem">
+         href="https://careem.go.link/2iLRM" rel="noopener" aria-label="اطلب عبر كريم" data-i18n-aria="orderCareem">
         <img src="assets/careem.svg" alt="Careem">
-        <span class="cta">Order on Careem
+        <span class="cta"><span data-i18n="orderCareem">اطلب عبر كريم</span>
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
         </span>
       </a>
       <a class="tile" id="btn-talabat" data-platform="talabat"
-         href="https://www.talabat.com/jordan/qahwa-blk" rel="noopener" aria-label="Order on Talabat">
+         href="https://www.talabat.com/jordan/qahwa-blk" rel="noopener" aria-label="اطلب عبر طلبات" data-i18n-aria="orderTalabat">
         <img src="assets/talabat.jpg" alt="Talabat">
-        <span class="cta">Order on Talabat
+        <span class="cta"><span data-i18n="orderTalabat">اطلب عبر طلبات</span>
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
         </span>
       </a>
     </div>
 
-    <div class="eyebrow"><span>Find a branch</span></div>
+    <div class="eyebrow"><span data-i18n="findBranch">ابحث عن فرع</span></div>
     <section class="finder">
-      <p class="lead">Visiting us? Share your location and we’ll show the branches closest to you.</p>
+      <p class="lead" data-i18n="lead">تود زيارتنا؟ شارك موقعك وسنعرض لك أقرب الفروع إليك.</p>
       <button class="chrome-btn" id="find-btn" type="button">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></svg>
-        <span id="find-label">Find my nearest branch</span>
+        <span id="find-label" data-i18n="findBtn">ابحث عن أقرب فرع</span>
       </button>
       <div class="status" id="status" role="status" aria-live="polite"></div>
       <ul class="branches" id="branches"></ul>
-      <button class="more" id="more" type="button" hidden>Show more branches</button>
+      <button class="more" id="more" type="button" hidden data-i18n="more">عرض المزيد من الفروع</button>
       <a class="all-link" href="https://www.google.com/maps/d/viewer?mid=1vUmZEhnP0sZ5ezfTDlh0EvX4laJRCuc"
-         target="_blank" rel="noopener">View all branches on the map</a>
+         target="_blank" rel="noopener" data-i18n="allBranches">عرض جميع الفروع على الخريطة</a>
     </section>
 
-    <footer>QAHWA BLK</footer>
+    <footer data-i18n="footer">قهوة BLK</footer>
   </main>
 
 <script>
+  // Arabic is the default; the choice is remembered in this browser.
+  var STRINGS = {
+    ar: {
+      title: "قهوة BLK — اطلب أونلاين",
+      desc: "اطلب من قهوة BLK عبر كريم أو طلبات، واعثر على أقرب فرع إليك.",
+      logoAlt: "قهوة BLK", brand: "قهوة BLK", footer: "قهوة BLK",
+      sub: "قهوة طازجة، توصلك لباب البيت.<br>اختر التطبيق للطلب.",
+      orderOnline: "اطلب أونلاين", orderCareem: "اطلب عبر كريم", orderTalabat: "اطلب عبر طلبات",
+      findBranch: "ابحث عن فرع",
+      lead: "تود زيارتنا؟ شارك موقعك وسنعرض لك أقرب الفروع إليك.",
+      findBtn: "ابحث عن أقرب فرع", updateBtn: "تحديث موقعي",
+      more: "عرض المزيد من الفروع", allBranches: "عرض جميع الفروع على الخريطة",
+      nearest: "الأقرب", hours: "الدوام والخريطة",
+      away: "على بعد {n} {u}", m: "م", km: "كم",
+      finding: "جارٍ تحديد موقعك…", closest: "أقرب الفروع إليك:",
+      noGeo: "متصفحك لا يدعم مشاركة الموقع. استخدم رابط الخريطة أدناه.",
+      blocked: "الموقع محجوب. اسمح به من إعدادات المتصفح، أو استخدم رابط الخريطة أدناه.",
+      failed: "تعذّر تحديد موقعك. حاول مرة أخرى أو استخدم رابط الخريطة أدناه.",
+      switchTo: "English"
+    },
+    en: {
+      title: "Qahwa BLK — Order online",
+      desc: "Order Qahwa BLK on Careem or Talabat, and find your nearest branch.",
+      logoAlt: "Qahwa BLK", brand: "Qahwa BLK", footer: "QAHWA BLK",
+      sub: "Freshly brewed, delivered to you.<br>Pick your app to order.",
+      orderOnline: "Order online", orderCareem: "Order on Careem", orderTalabat: "Order on Talabat",
+      findBranch: "Find a branch",
+      lead: "Visiting us? Share your location and we’ll show the branches closest to you.",
+      findBtn: "Find my nearest branch", updateBtn: "Update my location",
+      more: "Show more branches", allBranches: "View all branches on the map",
+      nearest: "Nearest", hours: "Hours & map",
+      away: "{n} {u} away", m: "m", km: "km",
+      finding: "Finding your location…", closest: "Closest branches to you:",
+      noGeo: "Your browser can’t share location. Use the map link below.",
+      blocked: "Location is blocked. Allow it in your browser settings, or use the map link below.",
+      failed: "Couldn’t get your location. Please try again or use the map link below.",
+      switchTo: "العربية"
+    }
+  };
+
+  var lang = "ar";
+  try { if (localStorage.getItem("lang") === "en") lang = "en"; } catch (e) { /* storage unavailable */ }
+  function t(key) { return STRINGS[lang][key]; }
+
+  var statusKey = "", statusErr = false, findKey = "findBtn";
+
+  function applyLang() {
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+    document.title = t("title");
+    document.querySelector('meta[name="description"]').setAttribute("content", t("desc"));
+    document.querySelector('meta[property="og:title"]').setAttribute("content", t("title"));
+    document.querySelector('meta[property="og:description"]').setAttribute("content", t("desc"));
+    document.querySelectorAll("[data-i18n]").forEach(function (el) {
+      if (el.hasAttribute("data-html")) el.innerHTML = t(el.getAttribute("data-i18n"));
+      else el.textContent = t(el.getAttribute("data-i18n"));
+    });
+    document.querySelectorAll("[data-i18n-alt]").forEach(function (el) { el.alt = t(el.getAttribute("data-i18n-alt")); });
+    document.querySelectorAll("[data-i18n-aria]").forEach(function (el) { el.setAttribute("aria-label", t(el.getAttribute("data-i18n-aria"))); });
+    document.getElementById("find-label").textContent = t(findKey);
+    document.getElementById("lang-btn").textContent = t("switchTo");
+    document.getElementById("lang-btn").lang = lang === "ar" ? "en" : "ar";
+    if (statusKey) setStatus(statusKey, statusErr);
+    document.querySelectorAll("[data-km]").forEach(function (el) { el.textContent = fmt(parseFloat(el.getAttribute("data-km"))); });
+    document.querySelectorAll(".branch .tag").forEach(function (el) { el.textContent = t("nearest"); });
+    document.querySelectorAll(".branch .go-label").forEach(function (el) { el.textContent = t("hours"); });
+  }
+
+  document.getElementById("lang-btn").addEventListener("click", function () {
+    lang = lang === "ar" ? "en" : "ar";
+    try { localStorage.setItem("lang", lang); } catch (e) { /* ignore */ }
+    applyLang();
+  });
+
   var SUPABASE_URL = "https://cblkzkryeuiixqywxofv.supabase.co";
   var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNibGt6a3J5ZXVpaXhxeXd4b2Z2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ0NTI3OTAsImV4cCI6MjEwMDAyODc5MH0.FLHzAdhCD_6I1CpZEIJ8A0ieQ48kC8e8I0sTkeCoVBs";
 
@@ -268,12 +357,13 @@
   }
 
   function fmt(km) {
-    if (km < 1) return Math.round(km * 10) * 100 + " m away";
-    return (km < 10 ? km.toFixed(1) : Math.round(km)) + " km away";
+    if (km < 1) return t("away").replace("{n}", Math.round(km * 10) * 100).replace("{u}", t("m"));
+    return t("away").replace("{n}", km < 10 ? km.toFixed(1) : Math.round(km)).replace("{u}", t("km"));
   }
 
-  function setStatus(msg, isErr) {
-    statusEl.textContent = msg;
+  function setStatus(key, isErr) {
+    statusKey = key; statusErr = !!isErr;
+    statusEl.textContent = t(key);
     statusEl.className = "status" + (isErr ? " err" : "");
   }
 
@@ -290,13 +380,14 @@
       if (i === 0) {
         var tag = document.createElement("span");
         tag.className = "tag";
-        tag.textContent = "Nearest";
+        tag.textContent = t("nearest");
         name.appendChild(tag);
       }
       name.appendChild(document.createTextNode(b.name));
       var dist = document.createElement("div");
       dist.className = "dist";
       dist.textContent = fmt(b.km);
+      dist.setAttribute("data-km", b.km);
       info.appendChild(name);
       info.appendChild(dist);
       var go = document.createElement("a");
@@ -306,7 +397,8 @@
       // Name search centred on the branch opens its Google listing (hours, directions) instead of a bare pin.
       go.href = "https://www.google.com/maps/search/" + encodeURIComponent("Qahwa BLK " + b.name) +
         "/@" + b.lat + "," + b.lng + ",17z";
-      go.innerHTML = 'Hours &amp; map <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
+      go.innerHTML = '<span class="go-label"></span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
+      go.firstChild.textContent = t("hours");
       li.appendChild(info);
       li.appendChild(go);
       listEl.appendChild(li);
@@ -319,11 +411,11 @@
 
   findBtn.addEventListener("click", function () {
     if (!navigator.geolocation) {
-      setStatus("Your browser can’t share location. Use the map link below.", true);
+      setStatus("noGeo", true);
       return;
     }
     findBtn.disabled = true;
-    setStatus("Finding your location…", false);
+    setStatus("finding", false);
     navigator.geolocation.getCurrentPosition(function (pos) {
       var lat = pos.coords.latitude, lng = pos.coords.longitude;
       sorted = BRANCHES.map(function (b) {
@@ -332,16 +424,16 @@
       listEl.innerHTML = "";
       shown = 0;
       renderMore();
-      setStatus("Closest branches to you:", false);
+      setStatus("closest", false);
       findBtn.disabled = false;
-      findLabel.textContent = "Update my location";
+      findKey = "updateBtn";
+      findLabel.textContent = t(findKey);
     }, function (err) {
       findBtn.disabled = false;
-      setStatus(err && err.code === 1
-        ? "Location is blocked. Allow it in your browser settings, or use the map link below."
-        : "Couldn’t get your location. Please try again or use the map link below.", true);
+      setStatus(err && err.code === 1 ? "blocked" : "failed", true);
     }, { enableHighAccuracy: false, timeout: 15000, maximumAge: 60000 });
   });
+  if (lang !== "ar") applyLang();
 </script>
 </body>
 </html>

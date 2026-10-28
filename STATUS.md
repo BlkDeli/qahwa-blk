@@ -8,6 +8,7 @@ Live at https://del.blk.jo. Order links are loaded from the Supabase `public.lin
 
 ## Decisions made
 - Plain index.html, no build step; deploy = push to main.
+- Arabic is the default language (RTL); an English/العربية button top corner switches and the choice is saved in localStorage. All copy lives in the STRINGS object in index.html; branch names stay in English.
 - Links are edited from the private status page (BlkDeli/qahwa-blk-status, https://blkdeli.github.io/qahwa-blk-status/) via the password-gated `set_link` RPC. Direct writes to `links` are blocked by RLS.
 - Look: pure black background, chrome (silver gradient) accents instead of gold, logo shown as white frame only.
 - Branches are embedded in the page, not fetched from the map, so the nearest-branch feature works instantly; re-export the map KML and update BRANCHES when branches change.
@@ -18,6 +19,7 @@ Live at https://del.blk.jo. Order links are loaded from the Supabase `public.lin
 2. Refresh the BRANCHES array if the Google My Map changes (Autostrad Zarqa has no coordinates on the map).
 
 ## Log
+- 2026-10-28: Arabic default + English switch (RTL, translated UI, remembered choice).
 - 2026-10-21: Branch buttons now open the Google listing (hours) via name search at the branch coordinates, not a dropped pin.
 - 2026-10-21: Pitch-black + chrome restyle, logo white frame only, replaced embedded map with nearest-branch finder (geolocation).
 - 2026-10-21: Replaced Careem link with careem.go.link/2iLRM. Redesigned the page (tiles, map section). Links now editable from the status page.
