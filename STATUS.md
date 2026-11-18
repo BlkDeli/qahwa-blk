@@ -19,7 +19,7 @@ Live at https://del.blk.jo. Order links are loaded from the Supabase `public.lin
 2. Refresh the BRANCHES array if the Google My Map changes (Autostrad Zarqa has no coordinates on the map).
 
 ## Log
-- 2026-11-18: Rewrote all Arabic copy from formal Arabic into Jordanian dialect to match BLK's voice.
+- 2026-11-18: Rewrote all Arabic copy from formal Arabic into Jordanian dialect to match BLK's voice. Tagline uses فريش (owner's word) instead of طازة.
 - 2026-10-28: Arabic default + English switch (RTL, translated UI, remembered choice).
 - 2026-10-21: Branch buttons now open the Google listing (hours) via name search at the branch coordinates, not a dropped pin.
 - 2026-10-21: Pitch-black + chrome restyle, logo white frame only, replaced embedded map with nearest-branch finder (geolocation).
